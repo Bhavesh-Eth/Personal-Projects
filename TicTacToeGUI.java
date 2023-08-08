@@ -6,14 +6,6 @@ import java.util.*;
 import java.util.List;
 
 public class TicTacToeGUI extends JFrame implements ActionListener {
-    private char[][] gameboard = {
-            {' ', '|', ' ', '|', ' '},
-            {'-', '*', '-', '*', '-'},
-            {' ', '|', ' ', '|', ' '},
-            {'-', '*', '-', '*', '-'},
-            {' ', '|', ' ', '|', ' '}
-    };
-
     private JButton[] buttons = new JButton[9];
     private ArrayList<Integer> playerposition = new ArrayList<Integer>();
     private ArrayList<Integer> pcposition = new ArrayList<Integer>();
@@ -68,14 +60,6 @@ public class TicTacToeGUI extends JFrame implements ActionListener {
     }
 
     private void placepiece(int pos, String user) {
-        char symbol = (user.equals("player")) ? 'X' : 'O';
-
-        switch (pos) {
-            case 1, 2, 3 -> gameboard[0][(pos - 1) * 2] = symbol;
-            case 4, 5, 6 -> gameboard[2][(pos - 4) * 2] = symbol;
-            case 7, 8, 9 -> gameboard[4][(pos - 7) * 2] = symbol;
-        }
-
         if (user.equals("player")) {
             playerposition.add(pos);
         } else {
@@ -130,15 +114,11 @@ public class TicTacToeGUI extends JFrame implements ActionListener {
         playerposition.clear();
         pcposition.clear();
 
-        for (int i = 0; i < 5; i++) {
-            gameboard[i] = new char[]{' ', '|', ' ', '|', ' '};
-        }
-
         for (int i = 0; i < 9; i++) {
             buttons[i].setText("");
         }
     }
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TicTacToeGUI());
     }
